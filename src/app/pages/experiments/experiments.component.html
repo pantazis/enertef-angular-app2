@@ -1,0 +1,51 @@
+<section id="experiments" class="card">
+        <div class="h-03">Experiments</div>
+        <div class="section-grid">
+          <form class="card">
+            <div class="h-04">Create experiment</div>
+            <div class="field mt-3"><label class="label">Title</label><input class="input" placeholder="Title"></div>
+            <div class="field mt-3"><label class="label">Description</label><textarea class="textarea" placeholder="Description"></textarea></div>
+            <div class="field mt-3"><label class="label">Datasets required</label>
+              <select class="select" multiple="">
+                <option>Dataset 1</option>
+                <option>Dataset 2</option>
+              </select>
+            </div>
+            <div class="field mt-3"><label class="label">Assets required</label>
+              <select class="select" multiple="">
+                <option>Asset 1</option>
+                <option>Asset 2</option>
+              </select>
+            </div>
+            <div class="field mt-3"><label class="label">HPC resources</label>
+              <div style="display:grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap:.5rem;">
+                <input class="input" placeholder="CPUs">
+                <input class="input" placeholder="RAM">
+                <input class="input" placeholder="GPUs">
+                <input class="input" placeholder="Disk Space">
+              </div>
+            </div>
+            <div class="field mt-3"><label class="label">KPIs</label>
+              <div style="display:grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap:.5rem;">
+                <input class="input" placeholder="KPI 1">
+                <input class="input" placeholder="KPI 2">
+              </div>
+            </div>
+            <div class="mt-4">
+              <button class="btn btn--primary" type="button">Start Experiment</button>
+              <a class="btn btn--ghost" href="#">Go to workbench</a>
+            </div>
+          </form>
+
+          <div class="card">
+            <div class="h-04">My experiments</div>
+            <table class="mt-3">
+              <thead><tr><th>Title</th><th>Status</th><th>Resources</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>Forecast Model A</td><td>In progress</td><td>CPUs:4 RAM:16G GPUs:1 Disk:100G</td><td><button class="btn btn--secondary">End</button></td></tr>
+                <tr><td>Anomaly Detector</td><td>Scheduled</td><td>Ready at 12:00 16/6/2025</td><td><button class="btn btn--ghost">Details</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>

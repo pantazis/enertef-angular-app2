@@ -1,0 +1,40 @@
+<header class="topbar">
+	<div class="topbar-content">
+		<a class="topbar-brand" routerLink="/">
+			<img src="assets/img/logo-nb.png" alt="EnerTEF Logo" class="brand-logo" />
+		
+		</a>
+
+		<!-- Logged OUT -->
+		<div class="topbar-actions" *ngIf="!loggedIn">
+			<button class="btn btn--ghost btn--sm" (click)="login()">
+				<i class="fas fa-sign-in-alt"></i> Login
+			</button>
+			<button class="btn btn--primary btn--sm">
+				<i class="fas fa-user-plus"></i> Register
+			</button>
+		</div>
+
+		<!-- Logged IN -->
+		<div class="topbar-actions" *ngIf="loggedIn">
+			<div class="user-menu">
+				<button class="user-menu-toggle" (click)="toggleUserMenu()">
+					<div class="user-avatar"><i class="fas fa-user"></i></div>
+					<span class="user-name">John Doe</span>
+					<i class="fas fa-chevron-down"></i>
+				</button>
+				<div class="user-dropdown" [class.show]="userMenuOpen">
+					<a routerLink="/auth" class="dropdown-item"><i class="fas fa-user-circle"></i> Profile</a>
+					<a routerLink="/auth" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a>
+					<a routerLink="/auth" class="dropdown-item"><i class="fas fa-bell"></i> Notifications<span class="notification-badge">3</span></a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item text-danger" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+				</div>
+			</div>
+		</div>
+
+		<button class="mobile-menu-toggle">
+			<i class="fas fa-bars"></i>
+		</button>
+	</div>
+</header>
