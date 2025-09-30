@@ -23,7 +23,7 @@
             "outputPath": "docs",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "baseHref": "/enertef-angular-app/",
+            "baseHref": "/enertef-angular-app2/",
             "polyfills": [
               "zone.js"
             ],
@@ -59,7 +59,7 @@
             },
             "github-pages": {
               "outputPath": "docs",
-              "baseHref": "/enertef-angular-app/",
+              "baseHref": "/enertef-angular-app2/",
               "budgets": [
                 {
                   "type": "initial",
