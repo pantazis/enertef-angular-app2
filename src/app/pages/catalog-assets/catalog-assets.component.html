@@ -1,1 +1,286 @@
-<p>catalog-assets works!</p>
+<section class="content no-padding no-bg block">
+	<!-- Header -->
+	<div class="section-header">
+			<div>
+				<h1 class="h-03">Discover Assets</h1>
+				<p class="b-02 text-dark" style="opacity: 0.7;">Browse datasets, software tools, and digital twins available through the EnerTEF ecosystem.</p>
+			</div>
+		<div class="section-actions">
+			<div class="view-toggle">
+				<button 
+					class="btn btn--ghost btn--sm" 
+					[class.btn--primary]="viewMode === 'grid'"
+					(click)="viewMode = 'grid'">
+					<i class="fas fa-th"></i>
+				</button>
+				<button 
+					class="btn btn--ghost btn--sm" 
+					[class.btn--primary]="viewMode === 'list'"
+					(click)="viewMode = 'list'">
+					<i class="fas fa-list"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Filters Section -->
+	<div class="card mb-6">
+		<div class="filters-container">
+			<!-- Search -->
+			<div class="field" style="flex: 1; min-width: 300px;">
+				<label class="label">Search Services</label>
+				<input 
+					type="text" 
+					class="input" 
+					placeholder="Search by name, description, or provider..."
+					[(ngModel)]="filter.searchQuery"
+					(input)="onSearch()">
+			</div>
+
+			<!-- Sort -->
+			<div class="field" style="min-width: 200px;">
+				<label class="label">Sort By</label>
+				<select class="select" [(ngModel)]="filter.sortBy" (change)="onSortChange()">
+					<option value="popularity">Popularity</option>
+					<option value="name">Name</option>
+					<option value="rating">Rating</option>
+					<option value="created">Newest</option>
+				</select>
+			</div>
+
+			<!-- Sort Order -->
+			<div class="field" style="min-width: 150px;">
+				<label class="label">Order</label>
+				<select class="select" [(ngModel)]="filter.sortOrder" (change)="onSortChange()">
+					<option value="desc">Descending</option>
+					<option value="asc">Ascending</option>
+				</select>
+			</div>
+		</div>
+
+		<!-- Advanced Filters -->
+		<div class="filters-advanced">
+			<!-- Categories -->
+			<div class="filter-group">
+				<h4 class="c-01">Categories</h4>
+				<div class="filter-pills">
+					<label *ngFor="let category of categories" class="filter-pill">
+						<input 
+							type="checkbox" 
+							[value]="category.id"
+							(change)="onCategoryChange(category.id, $any($event.target).checked)">
+						<span class="pill" [style.background-color]="category.color + '20'" [style.border-color]="category.color">
+							<i [class]="category.icon"></i>
+							{{category.name}}
+						</span>
+					</label>
+				</div>
+			</div>
+
+			<!-- Tags -->
+			<div class="filter-group">
+				<h4 class="c-01">Tags</h4>
+				<div class="filter-pills">
+					<label *ngFor="let tag of tags" class="filter-pill">
+						<input 
+							type="checkbox" 
+							[value]="tag.id"
+							(change)="onTagChange(tag.id, $any($event.target).checked)">
+						<span class="pill pill--ghost">
+							{{tag.name}}
+						</span>
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Results Summary -->
+	<div class="results-summary mb-4">
+		<p class="c-01">{{filteredServices.length}} services found</p>
+	</div>
+
+	<!-- Loading State -->
+	<div *ngIf="loading" class="loading-state">
+		<div class="card p-8">
+			<div style="text-align: center;">
+				<i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--brand-accent); margin-bottom: 1rem;"></i>
+				<p class="b-02">Loading services...</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Services Grid/List -->
+	<div *ngIf="!loading" class="services-container" [class.grid-view]="viewMode === 'grid'" [class.list-view]="viewMode === 'list'">
+		<div 
+			*ngFor="let service of filteredServices" 
+			class="service-card card"
+			(click)="openServiceDrawer(service)">
+      
+			<!-- Service Header -->
+			<div class="service-header">
+				<div class="service-meta">
+					<div class="service-category" [style.color]="service.category.color">
+						<i [class]="service.category.icon"></i>
+						{{service.category.name}}
+					</div>
+					<div class="service-badges">
+						<span *ngIf="service.featured" class="pill pill--featured">Featured</span>
+						<span *ngIf="service.validated" class="pill pill--validated">
+							<i class="fas fa-check-circle"></i> Validated
+						</span>
+					</div>
+				</div>
+				<div class="service-rating">
+					<div class="rating-stars">
+						<i class="fas fa-star" *ngFor="let star of [1,2,3,4,5]; let i = index" 
+							 [class.active]="i < service.metrics.averageRating"></i>
+					</div>
+					<span class="rating-text">{{service.metrics.averageRating}} ({{service.metrics.totalReviews}})</span>
+				</div>
+			</div>
+
+			<!-- Service Content -->
+			<div class="service-content">
+				<h3 class="service-title h-04">{{service.title}}</h3>
+				<p class="service-description b-02">{{service.shortDescription}}</p>
+        
+				<!-- Tags -->
+				<div class="service-tags">
+					<span *ngFor="let tag of service.tags.slice(0, 3)" class="pill pill--small">{{tag.name}}</span>
+					<span *ngIf="service.tags.length > 3" class="pill pill--small pill--more">+{{service.tags.length - 3}}</span>
+				</div>
+			</div>
+
+			<!-- Service Footer -->
+			<div class="service-footer">
+				<div class="service-provider">
+					<div class="provider-info">
+						<div class="provider-name">{{service.provider.name}}</div>
+						<div class="provider-verified" *ngIf="service.provider.verified">
+							<i class="fas fa-shield-check"></i> Verified
+						</div>
+					</div>
+				</div>
+				<div class="service-pricing">
+					<span class="pricing-type" [class]="'pricing-' + service.pricing.type">{{service.pricing.type}}</span>
+					<span *ngIf="service.pricing.startingPrice" class="pricing-amount">
+						From {{service.pricing.startingPrice}} {{service.pricing.currency}}
+					</span>
+				</div>
+			</div>
+
+			<!-- Service Actions -->
+			<div class="service-actions">
+				<button class="btn btn--ghost btn--sm" (click)="$event.stopPropagation(); contactProvider(service)">
+					<i class="fas fa-envelope"></i> Contact
+				</button>
+				<button class="btn btn--primary btn--sm" (click)="$event.stopPropagation(); startServiceRequest(service)">
+					<i class="fas fa-paper-plane"></i> Request Service
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Empty State -->
+	<div *ngIf="!loading && filteredServices.length === 0" class="empty-state">
+		<div class="card p-8">
+			<div style="text-align: center;">
+				<i class="fas fa-search" style="font-size: 3rem; color: var(--brand-accent); margin-bottom: 1rem; opacity: 0.5;"></i>
+				<h3 class="h-04 mb-2">No services found</h3>
+				<p class="b-02" style="opacity: 0.7;">Try adjusting your search criteria or filters</p>
+				<button class="btn btn--ghost mt-4" (click)="filter = { searchQuery: '', categories: [], tags: [], sortBy: 'popularity', sortOrder: 'desc' }; applyFilters()">
+					Clear Filters
+				</button>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Service Detail Drawer -->
+<div class="drawer-overlay" *ngIf="showServiceDrawer" (click)="closeServiceDrawer()">
+	<div class="drawer" (click)="$event.stopPropagation()" *ngIf="selectedService">
+		<div class="drawer-header">
+			<div>
+				<h2 class="h-04">{{selectedService.title}}</h2>
+				<p class="service-category" [style.color]="selectedService.category.color">
+					<i [class]="selectedService.category.icon"></i>
+					{{selectedService.category.name}}
+				</p>
+			</div>
+			<button class="btn btn--ghost btn--sm" (click)="closeServiceDrawer()">
+				<i class="fas fa-times"></i>
+			</button>
+		</div>
+    
+		<div class="drawer-content">
+			<!-- Service Details -->
+			<div class="service-detail-section">
+				<h4 class="h-04 mb-3">Description</h4>
+				<p class="b-02">{{selectedService.description}}</p>
+			</div>
+
+			<!-- Provider Info -->
+			<div class="service-detail-section">
+				<h4 class="h-04 mb-3">Provider</h4>
+				<div class="provider-card">
+					<div class="provider-header">
+						<h5 class="b-01">{{selectedService.provider.name}}</h5>
+						<div class="provider-verified" *ngIf="selectedService.provider.verified">
+							<i class="fas fa-shield-check"></i> Verified
+						</div>
+					</div>
+					<p class="c-01">{{selectedService.provider.description}}</p>
+					<div class="provider-stats">
+						<span class="stat">Rating: {{selectedService.provider.rating}}/5</span>
+						<span class="stat">Services: {{selectedService.provider.totalServices}}</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- Pricing -->
+			<div class="service-detail-section">
+				<h4 class="h-04 mb-3">Pricing</h4>
+				<div class="pricing-card">
+					<div class="pricing-type">{{selectedService.pricing.type | titlecase}}</div>
+					<div *ngIf="selectedService.pricing.startingPrice" class="pricing-details">
+						<span class="price">From {{selectedService.pricing.startingPrice}} {{selectedService.pricing.currency}}</span>
+						<span class="billing">{{selectedService.pricing.billingModel}}</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- Metrics -->
+			<div class="service-detail-section">
+				<h4 class="h-04 mb-3">Performance</h4>
+				<div class="metrics-grid">
+					<div class="metric">
+						<div class="metric-value">{{selectedService.metrics.views}}</div>
+						<div class="metric-label">Views</div>
+					</div>
+					<div class="metric">
+						<div class="metric-value">{{selectedService.metrics.requests}}</div>
+						<div class="metric-label">Requests</div>
+					</div>
+					<div class="metric">
+						<div class="metric-value">{{selectedService.metrics.successfulProjects}}</div>
+						<div class="metric-label">Completed</div>
+					</div>
+					<div class="metric">
+						<div class="metric-value">{{selectedService.metrics.averageRating}}</div>
+						<div class="metric-label">Rating</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="drawer-footer">
+			<button class="btn btn--ghost" (click)="contactProvider(selectedService)">
+				<i class="fas fa-envelope"></i> Contact Provider
+			</button>
+			<button class="btn btn--primary" (click)="startServiceRequest(selectedService)">
+				<i class="fas fa-paper-plane"></i> Request Service
+			</button>
+		</div>
+	</div>
+</div>
