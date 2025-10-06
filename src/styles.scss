@@ -345,7 +345,7 @@ a:hover { text-decoration: underline; }
   height: calc(100vh - var(--nav-height) ); /* Subtract top bar height */
   padding: var(--s-6) var(--s-4);
   border-right: 1px solid rgba(0,0,0,.08);
-  background: var(--color-orange);
+  background: var(--brand-gradient);
   overflow:auto;
   padding-left: 1.25rem; /* Align with top bar padding */
   box-sizing: border-box;

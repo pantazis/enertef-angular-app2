@@ -63,70 +63,69 @@ export class SidebarComponent implements OnInit, OnDestroy {
   };
 
   // Public menu items (always visible)
-  publicMenuItems = [
-    { path: '/typography', label: 'Home / Landing', icon: '🏠' }, // Using typography as landing for now
-    { path: '/components', label: 'Services Catalog', icon: '📋' },
-    { path: '/grid', label: 'Find a Partner', icon: '🤝' },
-    { path: '/colors', label: 'Discover Assets', icon: '💎' },
-    { path: '/requests', label: 'Matchmaking Requests', icon: '🔍' }
+  publicMenuItems = [    
+    { path: '/components', label: 'Services Catalog list', icon: 'fas fa-list' },
+    { path: '/grid', label: 'Find a Partner list', icon: 'fas fa-handshake' },
+    { path: '/colors', label: 'Discover Assets list', icon: 'fas fa-gem' },
+    { path: '/requests', label: 'Matchmaking Requests list', icon: 'fas fa-search' }
   ];
 
   // Common authenticated user menu items
   commonMenuItems = [
-    { path: '/typography', label: 'Dashboard', icon: '📊' },
-    { path: '/components', label: 'Messages / Notifications', icon: '💬' },
-    { path: '/auth', label: 'Profile & Settings', icon: '⚙️' },
-    { path: '/payments', label: 'Billing / Wallet', icon: '💳' }
+    { path: '/typography', label: 'Dashboard', icon: 'fas fa-chart-bar' },
+    { path: '/components', label: 'Messages / Notifications', icon: 'fas fa-comments' },
+    { path: '/auth', label: 'Profile & Settings', icon: 'fas fa-cog' },
+    { path: '/payments', label: 'Billing / Wallet', icon: 'fas fa-credit-card' }
   ];
 
   // End-User specific menu items
   endUserMenuItems = [
-    { path: '/components', label: 'My Organisations', icon: '🏢' },
-    { path: '/requests', label: 'My Matchmaking Dashboard', icon: '🎯' },
-    { path: '/requests', label: 'My Service Requests', icon: '📝' },
-    { path: '/proposals', label: 'Proposals to My Requests', icon: '📄' },
-    { path: '/experiments', label: 'My Experiments (Workbench)', icon: '🔬' },
-    { path: '/resources', label: 'My Resource Usage', icon: '📈' },
-    { path: '/payments', label: 'Payments', icon: '💰' },
-    { path: '/components', label: 'My Disputes', icon: '⚖️' }
+    { path: '/components', label: 'My Organisations', icon: 'fas fa-building' },
+    { path: '/requests', label: 'My Matchmaking Dashboard', icon: 'fas fa-bullseye' },
+    { path: '/requests', label: 'My Service Requests', icon: 'fas fa-file-alt' },
+    { path: '/proposals', label: 'Proposals to My Requests', icon: 'fas fa-file-contract' },
+    { path: '/experiments', label: 'My Experiments (Workbench)', icon: 'fas fa-flask' },
+    { path: '/resources', label: 'My Resource Usage', icon: 'fas fa-chart-line' },
+    { path: '/payments', label: 'Payments', icon: 'fas fa-dollar-sign' },
+    { path: '/components', label: 'My Disputes', icon: 'fas fa-balance-scale' }
   ];
 
   // Service Developer menu items
   serviceDeveloperMenuItems = [
-    { path: '/requests', label: 'Incoming Service Requests', icon: '📥' },
-    { path: '/proposals', label: 'My Proposals', icon: '📝' },
-    { path: '/components', label: 'My Services (Provider CMS)', icon: '🛠️' },
-    { path: '/resources', label: 'Provider Assets', icon: '💾' },
-    { path: '/experiments', label: 'Provider Experiments', icon: '🧪' },
-    { path: '/resources', label: 'Provider Usage & Revenue', icon: '💹' },
-    { path: '/components', label: 'Provider Disputes', icon: '⚖️' }
+    { path: '/requests', label: 'Incoming Service Requests', icon: 'fas fa-inbox' },
+    { path: '/proposals', label: 'My Proposals', icon: 'fas fa-file-alt' },
+    { path: '/components', label: 'My Services (Provider CMS)', icon: 'fas fa-tools' },
+    { path: '/resources', label: 'Provider Assets', icon: 'fas fa-database' },
+    { path: '/experiments', label: 'Provider Experiments', icon: 'fas fa-vial' },
+    { path: '/resources', label: 'Provider Usage & Revenue', icon: 'fas fa-chart-area' },
+    { path: '/components', label: 'Provider Disputes', icon: 'fas fa-balance-scale' }
   ];
 
   // Organization Admin menu items
   orgAdminMenuItems = [
-    { path: '/components', label: 'Organization Profile Admin', icon: '🏛️' },
-    { path: '/auth', label: 'Team & Roles', icon: '👥' },
-    { path: '/components', label: 'Org Services Portfolio', icon: '📁' },
-    { path: '/payments', label: 'Org Billing / Contracts', icon: '📋' },
-    { path: '/components', label: 'Org Activity', icon: '📊' }
+    { path: '/components', label: 'Organization Profile Admin', icon: 'fas fa-university' },
+    { path: '/auth', label: 'Team & Roles', icon: 'fas fa-users' },
+    { path: '/components', label: 'Org Services Portfolio', icon: 'fas fa-folder-open' },
+    { path: '/payments', label: 'Org Billing / Contracts', icon: 'fas fa-file-invoice' },
+    { path: '/components', label: 'Org Activity', icon: 'fas fa-chart-bar' }
   ];
 
   // TEF Admin menu items
   tefAdminMenuItems = [
-    { path: '/proposals', label: 'Validate Services / Proposals', icon: '✅' },
-    { path: '/resources', label: 'Resource Monitoring (Global)', icon: '🌐' },
-    { path: '/resources', label: 'My TEF Assets', icon: '🏦' },
-    { path: '/requests', label: 'Requests (global)', icon: '🌍' },
-    { path: '/proposals', label: 'Proposals (global)', icon: '🌍' },
-    { path: '/components', label: 'Disputes (Arbitration)', icon: '👨‍⚖️' },
-    { path: '/resources', label: 'Nodes & Agents Registry', icon: '🖥️' }
+    { path: '/proposals', label: 'Validate Services / Proposals', icon: 'fas fa-check-circle' },
+    { path: '/resources', label: 'Resource Monitoring (Global)', icon: 'fas fa-globe' },
+    { path: '/resources', label: 'My TEF Assets', icon: 'fas fa-landmark' },
+    { path: '/requests', label: 'Requests (global)', icon: 'fas fa-globe-americas' },
+    { path: '/proposals', label: 'Proposals (global)', icon: 'fas fa-globe-europe' },
+    { path: '/components', label: 'Disputes (Arbitration)', icon: 'fas fa-gavel' },
+    { path: '/resources', label: 'Nodes & Agents Registry', icon: 'fas fa-server' }
   ];
 
   // Node Admin menu items
   nodeAdminMenuItems = [
-    { path: '/components', label: 'Register TEF Node', icon: '🔗' },
-    { path: '/components', label: 'Install HPC Agent', icon: '⚙️' },
-    { path: '/resources', label: 'Node Monitoring', icon: '📡' }
+    { path: '/components', label: 'Register TEF Node', icon: 'fas fa-link' },
+    { path: '/components', label: 'Install HPC Agent', icon: 'fas fa-cog' },
+    { path: '/resources', label: 'Node Monitoring', icon: 'fas fa-satellite-dish' }
   ];
 
   toggleSection(section: string) {

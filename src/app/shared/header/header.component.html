@@ -51,9 +51,12 @@
 				</button>
 				<div class="user-dropdown" [class.show]="userMenuOpen">
 					<div class="dropdown-header">{{currentUser.email}}</div>
-					<a routerLink="/profile" class="dropdown-item"><i class="fas fa-user-circle"></i> Profile</a>
-					<a routerLink="/profile" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a>
-					<a routerLink="/messages" class="dropdown-item"><i class="fas fa-bell"></i> Notifications<span class="notification-badge">3</span></a>
+										<a routerLink="/profile" class="dropdown-item"><i class="fas fa-user-circle"></i> Profile</a>
+					<a routerLink="/profile" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a>					
+					<a routerLink="/typography" class="dropdown-item"><i class="fas fa-chart-bar"></i>Dashboard</a>
+					<a routerLink="/components" class="dropdown-item"><i class="fas fa-comments"></i>Messages / Notifications<span class="notification-badge">3</span></a>
+					<a routerLink="/auth" class="dropdown-item"><i class="fas fa-cog"></i>Profile & Settings</a>
+					<a routerLink="/payments" class="dropdown-item"><i class="fas fa-credit-card"></i>Billing / Wallet</a>
 					<div class="dropdown-divider"></div>
 					<button class="dropdown-item text-danger" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
 				</div>

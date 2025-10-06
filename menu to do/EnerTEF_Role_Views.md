@@ -7,11 +7,10 @@ USE EXITING SCSS src\styles.scss
 ## 🌍 Public (Visitor)  
 Visible to **everyone**, no login.  
 
-- **Home / Landing** → intro to EnerTEF.  
-- **Services Catalog (read-only)** → browse services offered.   
-- **Find a Partner** → directory/search for organizations or experts.  
-- **Discover Assets** → browse datasets, tools, digital twins.  
-- **Matchmaking Requests** → see open collaboration/matchmaking opportunities.  
+- **Services Catalog list** → browse services offered.   
+- **Find a Partner list** → directory/search for organizations or experts.  
+- **Discover Assets list** → browse datasets, tools, digital twins.  
+- **Matchmaking Requests list** → see open collaboration/matchmaking opportunities.  
 
 ---
 under parent category my EnerTEF HIDE IF USER NOT LOGED IN 

@@ -10,58 +10,46 @@
 		<!-- Public Section (Always Visible) -->
 		<div class="nav-section">
 			<div class="nav-section-header">
-				<span class="nav-section-title">🌍 Public</span>
+				<span class="nav-section-title">{{getCurrentRoleLabel()}}</span>
 			</div>
+
+
+
+
+
+
+
 			<div class="nav-section-content">
 				<a *ngFor="let item of publicMenuItems" 
 				   [routerLink]="item.path" 
 				   routerLinkActive="active" 
 				   class="nav-item">
-					<span class="nav-icon">{{item.icon}}</span>
+					<i class="nav-icon {{item.icon}}"></i>
 					<span class="nav-label">{{item.label}}</span>
 				</a>
 			</div>
 		</div>
 
-		<!-- Debug Toggle (Remove in production) -->
-		<div class="nav-section mt-4">
-			<button (click)="toggleLogin()" class="debug-toggle btn btn--ghost btn--sm">
-				{{isLoggedIn ? '🔓 Logout (Debug)' : '🔒 Login (Debug)'}}
-			</button>
-		</div>
-
 		<!-- Authenticated Sections (Hidden if not logged in or has NO_LOGIN role) -->
 		<div *ngIf="shouldShowMyEnerTEF" class="nav-section">
 			<div class="nav-section-header expanded">
-				<span class="nav-section-title">👤 My EnerTEF</span>
+				<span class="nav-section-title"><i class="fas fa-user"></i> My EnerTEF</span>
 				<span class="nav-toggle">▼</span>
 			</div>
 			
 			<div class="nav-section-content">
-				<!-- Common Section -->
-				<div class="nav-subsection">
-					<div class="nav-subsection-title">Common</div>
-					<a *ngFor="let item of commonMenuItems" 
-					   [routerLink]="item.path" 
-					   routerLinkActive="active" 
-					   class="nav-item nav-subitem">
-						<span class="nav-icon">{{item.icon}}</span>
-						<span class="nav-label">{{item.label}}</span>
-					</a>
-				</div>
+				<!-- Current Role Section -->
+			
 
 				<!-- End-User Section -->
 				<div *ngIf="hasRole(UserRole.END_USER)" class="nav-subsection">
-					<div class="nav-subsection-header expanded">
-						<span class="nav-subsection-title">🟢 End-User (Requester)</span>
-						<span class="nav-toggle">▼</span>
-					</div>
+					
 					<div class="nav-subsection-content">
 						<a *ngFor="let item of endUserMenuItems" 
 						   [routerLink]="item.path" 
 						   routerLinkActive="active" 
 						   class="nav-item nav-subitem">
-							<span class="nav-icon">{{item.icon}}</span>
+							<i class="nav-icon {{item.icon}}"></i>
 							<span class="nav-label">{{item.label}}</span>
 						</a>
 					</div>
@@ -69,16 +57,13 @@
 
 				<!-- Service Developer Section -->
 				<div *ngIf="hasRole(UserRole.SERVICE_DEVELOPER)" class="nav-subsection">
-					<div class="nav-subsection-header expanded">
-						<span class="nav-subsection-title">🔵 Service Developer (Provider)</span>
-						<span class="nav-toggle">▼</span>
-					</div>
+					
 					<div class="nav-subsection-content">
 						<a *ngFor="let item of serviceDeveloperMenuItems" 
 						   [routerLink]="item.path" 
 						   routerLinkActive="active" 
 						   class="nav-item nav-subitem">
-							<span class="nav-icon">{{item.icon}}</span>
+							<i class="nav-icon {{item.icon}}"></i>
 							<span class="nav-label">{{item.label}}</span>
 						</a>
 					</div>
@@ -86,16 +71,13 @@
 
 				<!-- Organization Admin Section -->
 				<div *ngIf="hasRole(UserRole.ORGANIZATION_ADMIN)" class="nav-subsection">
-					<div class="nav-subsection-header expanded">
-						<span class="nav-subsection-title">🟠 Organization Admin</span>
-						<span class="nav-toggle">▼</span>
-					</div>
+					
 					<div class="nav-subsection-content">
 						<a *ngFor="let item of orgAdminMenuItems" 
 						   [routerLink]="item.path" 
 						   routerLinkActive="active" 
 						   class="nav-item nav-subitem">
-							<span class="nav-icon">{{item.icon}}</span>
+							<i class="nav-icon {{item.icon}}"></i>
 							<span class="nav-label">{{item.label}}</span>
 						</a>
 					</div>
@@ -103,16 +85,13 @@
 
 				<!-- TEF Admin Section -->
 				<div *ngIf="hasRole(UserRole.TEF_ADMIN)" class="nav-subsection">
-					<div class="nav-subsection-header expanded">
-						<span class="nav-subsection-title">🔴 TEF Admin (Marketplace Governance)</span>
-						<span class="nav-toggle">▼</span>
-					</div>
+					
 					<div class="nav-subsection-content">
 						<a *ngFor="let item of tefAdminMenuItems" 
 						   [routerLink]="item.path" 
 						   routerLinkActive="active" 
 						   class="nav-item nav-subitem">
-							<span class="nav-icon">{{item.icon}}</span>
+							<i class="nav-icon {{item.icon}}"></i>
 							<span class="nav-label">{{item.label}}</span>
 						</a>
 					</div>
@@ -120,16 +99,13 @@
 
 				<!-- Node Admin Section -->
 				<div *ngIf="hasRole(UserRole.NODE_ADMIN)" class="nav-subsection">
-					<div class="nav-subsection-header expanded">
-						<span class="nav-subsection-title">🟣 Platform / Node Admin</span>
-						<span class="nav-toggle">▼</span>
-					</div>
+					
 					<div class="nav-subsection-content">
 						<a *ngFor="let item of nodeAdminMenuItems" 
 						   [routerLink]="item.path" 
 						   routerLinkActive="active" 
 						   class="nav-item nav-subitem">
-							<span class="nav-icon">{{item.icon}}</span>
+							<i class="nav-icon {{item.icon}}"></i>
 							<span class="nav-label">{{item.label}}</span>
 						</a>
 					</div>
