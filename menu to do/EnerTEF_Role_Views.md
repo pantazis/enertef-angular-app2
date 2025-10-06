@@ -1,7 +1,8 @@
-Create a global service. The. That gets the role from kicklock. Every time you refresh a page. All views can subscribe. And get the current role. And then create the menu according to the list. We don't have key clock yet. ADD ROLES TO src\app\shared\header\header.component.html 
+
 
 Add the following to the menu src\app\shared\sidebar\sidebar.component.html
 Use components if they match with the views.
+USE EXITING SCSS src\styles.scss
 
 ## 🌍 Public (Visitor)  
 Visible to **everyone**, no login.  
