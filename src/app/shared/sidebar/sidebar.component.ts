@@ -21,7 +21,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     id: '',
     name: 'Guest User',
     email: '',
-    roles: [UserRole.NO_LOGIN],
+    roles: [UserRole.PUBLIC],
     isAuthenticated: false
   };
   private subscription: Subscription = new Subscription();
@@ -136,12 +136,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
     return this.currentUser.isAuthenticated;
   }
 
-  get isNoLoginRole(): boolean {
-    return this.hasRole(UserRole.NO_LOGIN);
+  get isPublicRole(): boolean {
+    return this.hasRole(UserRole.PUBLIC);
   }
 
   get shouldShowMyEnerTEF(): boolean {
-    return this.isLoggedIn && !this.isNoLoginRole;
+    return this.isLoggedIn && !this.isPublicRole;
   }
 
   hasRole(role: UserRole): boolean {
@@ -165,7 +165,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
   getCurrentRoleLabel(): string {
     if (this.currentUser.roles.length > 0) {
       const roleLabels: { [key in UserRole]: string } = {
-        [UserRole.NO_LOGIN]: '🚫 No Login (Guest)',
         [UserRole.PUBLIC]: '🌍 Public (Visitor)',
         [UserRole.END_USER]: '🟢 End-User (Requester)',
         [UserRole.SERVICE_DEVELOPER]: '🔵 Service Developer (Provider)',
@@ -175,6 +174,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
       };
       return roleLabels[this.currentUser.roles[0]];
     }
-    return '🚫 No Login (Guest)';
+    return '🌍 Public (Visitor)';
   }
 }

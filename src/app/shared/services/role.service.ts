@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 export enum UserRole {
-  NO_LOGIN = 'no-login',
   PUBLIC = 'public',
   END_USER = 'end-user',
   SERVICE_DEVELOPER = 'service-developer', 
@@ -37,7 +36,7 @@ export class RoleService {
     id: '',
     name: 'Guest User',
     email: '',
-    roles: [UserRole.NO_LOGIN],
+    roles: [UserRole.PUBLIC],
     isAuthenticated: false
   });
 
@@ -103,7 +102,7 @@ export class RoleService {
       id: '',
       name: 'Guest User',
       email: '',
-      roles: [UserRole.NO_LOGIN],
+      roles: [UserRole.PUBLIC],
       isAuthenticated: false
     };
 
@@ -124,7 +123,6 @@ export class RoleService {
   // Get available roles for demo purposes
   getAvailableRoles(): { value: UserRole, label: string }[] {
     return [
-      { value: UserRole.NO_LOGIN, label: '🚫 No Login (Guest)' },
       { value: UserRole.PUBLIC, label: '🌍 Public (Visitor)' },
       { value: UserRole.END_USER, label: '🟢 End-User (Requester)' },
       { value: UserRole.SERVICE_DEVELOPER, label: '🔵 Service Developer (Provider)' },
