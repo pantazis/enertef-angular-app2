@@ -12,6 +12,7 @@ export const routes: Routes = [
   { path: 'resources', loadComponent: () => import('./pages/resources/resources.component').then(m => m.ResourcesComponent) },
   { path: 'payments', loadComponent: () => import('./pages/payments/payments.component').then(m => m.PaymentsComponent) },
   { path: 'components', loadComponent: () => import('./pages/components/components.component').then(m => m.ComponentsComponent) },
+  { path: 'services-catalog', loadComponent: () => import('./pages/services-catalog/services-catalog.component').then(m => m.ServicesCatalogComponent) },
   { path: 'grid', loadComponent: () => import('./pages/grid/grid.component').then(m => m.GridComponent) },
   { path: '**', redirectTo: 'typography' }
 ];

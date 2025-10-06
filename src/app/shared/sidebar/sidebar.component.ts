@@ -64,10 +64,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   // Public menu items (always visible)
   publicMenuItems = [    
-    { path: '/components', label: 'Services Catalog list', icon: 'fas fa-list' },
-    { path: '/grid', label: 'Find a Partner list', icon: 'fas fa-handshake' },
-    { path: '/colors', label: 'Discover Assets list', icon: 'fas fa-gem' },
-    { path: '/requests', label: 'Matchmaking Requests list', icon: 'fas fa-search' }
+    { path: '/services-catalog', label: 'Services Catalog', icon: 'fas fa-list' },
+    { path: '/grid', label: 'Find a Partner', icon: 'fas fa-handshake' },
+    { path: '/colors', label: 'Discover Assets', icon: 'fas fa-gem' },
+    { path: '/requests', label: 'Matchmaking Requests', icon: 'fas fa-search' }
   ];
 
   // Common authenticated user menu items
