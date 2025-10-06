@@ -13,6 +13,9 @@ export const routes: Routes = [
   { path: 'payments', loadComponent: () => import('./pages/payments/payments.component').then(m => m.PaymentsComponent) },
   { path: 'components', loadComponent: () => import('./pages/components/components.component').then(m => m.ComponentsComponent) },
   { path: 'services-catalog', loadComponent: () => import('./pages/catalog-services/services-catalog.component').then(m => m.ServicesCatalogComponent) },
+  { path: 'catalog-partner', loadComponent: () => import('./pages/catalog-partner/catalog-partner.component').then(m => m.CatalogPartnerComponent) },
+  { path: 'catalog-assets', loadComponent: () => import('./pages/catalog-assets/catalog-assets.component').then(m => m.CatalogAssetsComponent) },
+  { path: 'catalog-requests', loadComponent: () => import('./pages/catalog-requests/catalog-requests.component').then(m => m.CatalogRequestsComponent) },
   { path: 'grid', loadComponent: () => import('./pages/grid/grid.component').then(m => m.GridComponent) },
   { path: '**', redirectTo: 'typography' }
 ];

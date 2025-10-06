@@ -19,6 +19,29 @@ export class MenuService {
       label: 'Services Catalog',
       icon: 'fas fa-store',
       route: '/services-catalog',
+      children: [
+        {
+          label: 'Catalog - Find Partner',
+          icon: 'fas fa-handshake',
+          route: '/catalog-partner',
+          roles: [UserRole.PUBLIC, UserRole.END_USER, UserRole.SERVICE_DEVELOPER, UserRole.ORGANIZATION_ADMIN, UserRole.TEF_ADMIN, UserRole.NODE_ADMIN],
+          requiresAuth: false
+        },
+        {
+          label: 'Catalog - Assets',
+          icon: 'fas fa-search',
+          route: '/catalog-assets',
+          roles: [UserRole.PUBLIC, UserRole.END_USER, UserRole.SERVICE_DEVELOPER, UserRole.ORGANIZATION_ADMIN, UserRole.TEF_ADMIN, UserRole.NODE_ADMIN],
+          requiresAuth: false
+        },
+        {
+          label: 'Catalog - Requests',
+          icon: 'fas fa-users',
+          route: '/catalog-requests',
+          roles: [UserRole.PUBLIC, UserRole.END_USER, UserRole.SERVICE_DEVELOPER, UserRole.ORGANIZATION_ADMIN, UserRole.TEF_ADMIN, UserRole.NODE_ADMIN],
+          requiresAuth: false
+        }
+      ],
       roles: [UserRole.PUBLIC, UserRole.END_USER, UserRole.SERVICE_DEVELOPER, UserRole.ORGANIZATION_ADMIN, UserRole.TEF_ADMIN, UserRole.NODE_ADMIN],
       requiresAuth: false
     },
